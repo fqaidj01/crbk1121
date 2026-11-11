@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>极光动漫 (NovaAnime) - 高清新番追番、经典剧场版与动漫百科资料库</title>
+  <meta name="description" content="极光动漫（NovaAnime）提供最新日本新番放送排期表、国创动漫、剧场版OVA与动漫制作社团百科资料库检索。无广告高速纯净动漫导航门户。" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            anime: {
+              950: '#0b0f19',
+              900: '#111827',
+              850: '#172033',
+              800: '#1e293b',
+              700: '#334155',
+              pink: '#ec4899',
+              rose: '#f43f5e',
+              purple: '#8b5cf6',
+              cyan: '#06b6d4',
+              gold: '#f59e0b'
+            }
+          },
+          fontFamily: {
+            sans: ['"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    .poster-hover {
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .poster-hover:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 16px 30px -8px rgba(236, 72, 153, 0.25), 0 0 15px -3px rgba(139, 92, 246, 0.3);
+    }
+    .line-clamp-1 {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="bg-anime-950 text-slate-200 antialiased selection:bg-rose-500 selection:text-white">
+
+  <!-- 1. 顶部公告横幅 (显眼高权重战略锚文本) -->
+  <div class="bg-gradient-to-r from-anime-900 via-anime-850 to-anime-900 border-b border-anime-800 text-xs py-2 px-4 text-slate-300">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold text-[10px] tracking-wide">官方认证</span>
+        <span>极光动漫（NovaAnime）· 纯净无广告追番导航 · 2026 每日新番连载中</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="text-slate-400 hidden md:inline">战略合作动漫社团与资料库：</span>
+        <!-- 显眼锚文本 -->
+        <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+           class="text-rose-400 hover:text-rose-300 font-bold underline flex items-center gap-1 transition-colors"
+           title="访问 chengrenbaike.com 垂直动漫与社团资料库">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>成人百科 (chengrenbaike.com) 动漫社团档案</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 经典二次元主导航栏 -->
+  <header class="sticky top-0 z-50 bg-anime-950/90 backdrop-blur-xl border-b border-anime-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Logo (全新品牌：极光动漫 NovaAnime) -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pink-500 via-rose-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/25 group-hover:scale-105 transition-transform">
+          <i data-lucide="play" class="w-5 h-5 fill-white ml-0.5"></i>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-black text-xl text-white tracking-wider font-sans">极光动漫</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-950/80 text-rose-300 font-mono font-bold border border-rose-800">NovaAnime</span>
+          </div>
+          <span class="text-[10px] text-slate-400 tracking-widest font-mono">ANIME BROADCAST & ARCHIVES</span>
+        </div>
+      </a>
+
+      <!-- 快捷导航链接 -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-300">
+        <a href="#" class="text-rose-400 flex items-center gap-1"><i data-lucide="home" class="w-4 h-4"></i>首页</a>
+        <a href="#schedule" class="hover:text-rose-400 transition-colors flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4 text-purple-400"></i>新番排期</a>
+        <a href="#catalog" class="hover:text-rose-400 transition-colors">动漫索引</a>
+        <a href="#ranking" class="hover:text-rose-400 transition-colors">神作榜单</a>
+        <a href="#studios" class="hover:text-rose-400 transition-colors text-amber-300">制作社团与百科</a>
+      </nav>
+
+      <!-- 搜索框与显眼锚文本按钮 -->
+      <div class="flex items-center gap-3">
+        <!-- 简易搜索 -->
+        <div class="relative hidden sm:block w-48 xl:w-64">
+          <input 
+            type="text" 
+            id="animeSearch" 
+            placeholder="搜索番剧名称、声优、制作组..." 
+            class="w-full pl-8 pr-3 py-1.5 rounded-full bg-anime-900 border border-anime-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"
+          />
+          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+        </div>
+
+        <!-- 显眼高曝光锚文本按钮 -->
+        <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white shadow-md shadow-rose-500/25 transition-all hover:scale-105"
+           title="访问 chengrenbaike.com 动漫社团与实体百科">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>成人百科 (chengrenbaike.com)</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 opacity-80"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 3. 每日新番放送时刻表 (周一至周日交互式排期大厅) -->
+  <section id="schedule" class="py-8 bg-gradient-to-b from-anime-900/60 to-anime-950 border-b border-anime-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-anime-800 gap-2">
+        <div class="flex items-center gap-2">
+          <i data-lucide="clock" class="w-5 h-5 text-rose-500"></i>
+          <h2 class="text-xl font-black text-white tracking-tight">每日新番放送排期表 (Broadcast Schedule)</h2>
+        </div>
+        <div class="text-xs text-slate-400 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>今日已同步 18 部连载更新</span>
+        </div>
+      </div>
+
+      <!-- 周一到周日切换 Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 text-xs font-bold" id="weekdayTabs">
+        <button data-day="mon" class="day-tab px-4 py-2 rounded-xl bg-anime-800 hover:bg-anime-700 text-slate-300 shrink-0 transition-colors">周一 (Mon)</button>
+        <button data-day="tue" class="day-tab px-4 py-2 rounded-xl bg-anime-800 hover:bg-anime-700 text-slate-300 shrink-0 transition-colors">周二 (Tue)</button>
+        <button data-day="wed" class="day-tab px-4 py-2 rounded-xl bg-anime-800 hover:bg-anime-700 text-slate-300 shrink-0 transition-colors">周三 (Wed)</button>
+        <button data-day="thu" class="day-tab px-4 py-2 rounded-xl bg-anime-800 hover:bg-anime-700 text-slate-300 shrink-0 transition-colors">周四 (Thu)</button>
+        <button data-day="fri" class="day-tab px-4 py-2 rounded-xl bg-anime-800 hover:bg-anime-700 text-slate-300 shrink-0 transition-colors">周五 (Fri)</button>
+        <button data-day="sat" class="day-tab active px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-purple-600 text-white shrink-0 shadow-md">周六 (Sat · 黄金档)</button>
+        <button data-day="sun" class="day-tab px-4 py-2 rounded-xl bg-anime-800 hover:bg-anime-700 text-slate-300 shrink-0 transition-colors">周日 (Sun)</button>
+      </div>
+
+      <!-- 排期卡片列表 (周六代表内容) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-2" id="scheduleGrid">
+        
+        <div class="bg-anime-900 border border-anime-800 rounded-xl p-3 hover:border-rose-500/60 transition-colors">
+          <div class="flex items-center justify-between text-[11px] mb-1.5">
+            <span class="text-rose-400 font-mono font-bold">23:00</span>
+            <span class="px-1.5 py-0.2 bg-rose-500/20 text-rose-300 rounded text-[10px]">第 12 话</span>
+          </div>
+          <div class="font-bold text-white text-xs truncate">葬送的芙莉莲 第二季</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">奇幻 / 冒险 / 治愈</div>
+        </div>
+
+        <div class="bg-anime-900 border border-anime-800 rounded-xl p-3 hover:border-rose-500/60 transition-colors">
+          <div class="flex items-center justify-between text-[11px] mb-1.5">
+            <span class="text-rose-400 font-mono font-bold">23:30</span>
+            <span class="px-1.5 py-0.2 bg-purple-500/20 text-purple-300 rounded text-[10px]">第 08 话</span>
+          </div>
+          <div class="font-bold text-white text-xs truncate">咒术回战 死灭回游篇</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">热血 / 战斗 / 奇幻</div>
+        </div>
+
+        <div class="bg-anime-900 border border-anime-800 rounded-xl p-3 hover:border-rose-500/60 transition-colors">
+          <div class="flex items-center justify-between text-[11px] mb-1.5">
+            <span class="text-rose-400 font-mono font-bold">24:00</span>
+            <span class="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded text-[10px]">第 10 话</span>
+          </div>
+          <div class="font-bold text-white text-xs truncate">关于我转生成史莱姆档</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">异世界 / 穿越 / 搞笑</div>
+        </div>
+
+        <div class="bg-anime-900 border border-anime-800 rounded-xl p-3 hover:border-rose-500/60 transition-colors">
+          <div class="flex items-center justify-between text-[11px] mb-1.5">
+            <span class="text-rose-400 font-mono font-bold">00:30</span>
+            <span class="px-1.5 py-0.2 bg-blue-500/20 text-blue-300 rounded text-[10px]">第 06 话</span>
+          </div>
+          <div class="font-bold text-white text-xs truncate">间谍过家家 第三季</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">喜剧 / 动作 / 悬疑</div>
+        </div>
+
+        <div class="bg-anime-900 border border-anime-800 rounded-xl p-3 hover:border-rose-500/60 transition-colors">
+          <div class="flex items-center justify-between text-[11px] mb-1.5">
+            <span class="text-rose-400 font-mono font-bold">01:00</span>
+            <span class="px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded text-[10px]">全 24 话</span>
+          </div>
+          <div class="font-bold text-white text-xs truncate">无职转生 到了异世界</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">奇幻 / 冒险 / 异世界</div>
+        </div>
+
+        <!-- 显眼社团更新 -->
+        <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+           class="bg-gradient-to-br from-rose-950/40 to-anime-900 border border-rose-500/40 rounded-xl p-3 hover:border-rose-400 transition-colors block">
+          <div class="flex items-center justify-between text-[11px] mb-1.5">
+            <span class="text-rose-400 font-bold">社团档案</span>
+            <span class="px-1.5 py-0.2 bg-rose-600 text-white rounded text-[10px]">新收录</span>
+          </div>
+          <div class="font-bold text-rose-300 text-xs truncate">成人百科 动漫词条</div>
+          <div class="text-[11px] text-slate-400 mt-0.5 truncate">chengrenbaike.com</div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. 重点推荐横幅 (超显眼动漫社团百科专栏) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+    <div class="p-6 rounded-2xl bg-gradient-to-r from-purple-900/40 via-rose-900/40 to-pink-900/40 border-2 border-rose-500/40 shadow-xl backdrop-blur-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="space-y-1.5 max-w-2xl">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold text-[10px] tracking-wider uppercase">特约动漫社团与画师资料库</span>
+          <span class="text-xs text-rose-300 font-mono">权威非播放型档案标准</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-black text-white">
+          成人百科 (chengrenbaike.com) 动漫社团、画师与品牌实体档案库
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          全面建档樱花动漫社、夜漫、蓝果 AI 算法画风平台与全球 940+ 原创动漫同人组织。提供实体编号、出版年表、团队成员背景与正版防伪白名单鉴别。
+        </p>
+      </div>
+      <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+         class="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black text-sm shadow-lg shadow-rose-500/30 shrink-0 flex items-center gap-2 transition-transform hover:scale-105">
+        <span>立即直达 chengrenbaike.com 查阅</span>
+        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. 本季强推高分新番展区 (Anime Poster Cards) -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pb-20">
+    
+    <!-- 热门新番风向标 -->
+    <section>
+      <div class="flex items-center justify-between pb-3 mb-6 border-b border-anime-800">
+        <h2 class="text-xl font-black text-white flex items-center gap-2">
+          <i data-lucide="flame" class="w-5 h-5 text-rose-500"></i>
+          <span>热播精选新番 (Featured Trending)</span>
+        </h2>
+        <span class="text-xs text-slate-400">4K 60FPS · 多线路测速</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+        
+        <!-- 动漫卡片 1 -->
+        <div class="poster-hover bg-anime-900 rounded-2xl border border-anime-800 overflow-hidden flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 flex flex-col justify-between p-4">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold text-[10px]">更新至 28 话</span>
+              <span class="px-2 py-0.5 rounded bg-black/60 text-amber-400 font-bold text-xs">★ 9.8</span>
+            </div>
+            <div class="text-center font-bold text-3xl text-white/30 tracking-widest font-mono">FRIEREN</div>
+            <div class="text-[11px] text-white/80 font-mono">MADHOUSE 制作</div>
+          </div>
+          <div class="p-4 space-y-2">
+            <h3 class="font-bold text-white text-base group-hover:text-rose-400 transition-colors truncate">葬送的芙莉莲</h3>
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+              勇者一行人击败魔王后的平静岁月，长寿精灵魔法使重新踏上探寻人类心之轨迹的长途旅程。
+            </p>
+            <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-anime-800">
+              <span>奇幻 / 治愈</span>
+              <span class="text-rose-400 font-bold">立即追番 →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 动漫卡片 2: 重点社团与百科卡片 (显眼锚文本) -->
+        <div class="poster-hover bg-gradient-to-br from-anime-900 via-anime-850 to-rose-950/40 rounded-2xl border-2 border-rose-500/60 overflow-hidden flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-rose-950 via-purple-950 to-anime-950 flex flex-col justify-between p-4">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-bold text-[10px]">官方实体档案</span>
+              <span class="px-2 py-0.5 rounded bg-black/60 text-amber-400 font-bold text-xs">★ 9.9</span>
+            </div>
+            <div class="text-center">
+              <div class="font-serif font-black text-2xl text-rose-300">成人百科</div>
+              <div class="text-xs text-rose-400 font-mono mt-1">chengrenbaike.com</div>
+            </div>
+            <div class="text-[11px] text-white/80 font-mono text-center">动漫实体收录 940+</div>
+          </div>
+          <div class="p-4 space-y-2">
+            <h3 class="font-bold text-white text-base group-hover:text-rose-400 transition-colors truncate">
+              <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer">
+                成人百科·动漫制作社团档案库
+              </a>
+            </h3>
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+              权威收录樱花社、夜漫等数十个原创动漫画师同人社团背景与实体鉴真。
+            </p>
+            <div class="flex items-center justify-between text-xs pt-2 border-t border-anime-800">
+              <span class="text-rose-400 font-bold">分类词条库</span>
+              <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" class="font-bold text-rose-400 hover:underline">
+                访问主站词条 →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 动漫卡片 3 -->
+        <div class="poster-hover bg-anime-900 rounded-2xl border border-anime-800 overflow-hidden flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-purple-950 via-slate-900 to-indigo-950 flex flex-col justify-between p-4">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px]">更新至 47 话</span>
+              <span class="px-2 py-0.5 rounded bg-black/60 text-amber-400 font-bold text-xs">★ 9.6</span>
+            </div>
+            <div class="text-center font-bold text-3xl text-white/30 tracking-widest font-mono">JUJUTSU</div>
+            <div class="text-[11px] text-white/80 font-mono">MAPPA 制作</div>
+          </div>
+          <div class="p-4 space-y-2">
+            <h3 class="font-bold text-white text-base group-hover:text-rose-400 transition-colors truncate">咒术回战 涉谷事变篇</h3>
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+              特级咒术师齐聚涉谷地下，五条悟封印战役打响，宏大震撼的战斗作画巅峰。
+            </p>
+            <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-anime-800">
+              <span>热血 / 战斗</span>
+              <span class="text-rose-400 font-bold">立即追番 →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 动漫卡片 4 -->
+        <div class="poster-hover bg-anime-900 rounded-2xl border border-anime-800 overflow-hidden flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-amber-950 via-slate-900 to-rose-950 flex flex-col justify-between p-4">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold text-[10px]">全 28 话 完结</span>
+              <span class="px-2 py-0.5 rounded bg-black/60 text-amber-400 font-bold text-xs">★ 9.7</span>
+            </div>
+            <div class="text-center font-bold text-3xl text-white/30 tracking-widest font-mono">SLAYER</div>
+            <div class="text-[11px] text-white/80 font-mono">ufotable 制作</div>
+          </div>
+          <div class="p-4 space-y-2">
+            <h3 class="font-bold text-white text-base group-hover:text-rose-400 transition-colors truncate">鬼灭之刃 柱训练篇</h3>
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+              鬼杀队全员接受九柱极限界限训练，无限城决战序幕全面拉开。
+            </p>
+            <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-anime-800">
+              <span>战斗 / 冒险</span>
+              <span class="text-rose-400 font-bold">立即追番 →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. 多维分类大厅与即时索引 (Catalog & Filters) -->
+    <section id="catalog" class="bg-anime-900 p-6 rounded-3xl border border-anime-800">
+      <div class="flex items-center justify-between pb-4 mb-5 border-b border-anime-800">
+        <div>
+          <h2 class="text-xl font-bold text-white">多维动漫深度分类索引</h2>
+          <p class="text-xs text-slate-400 mt-0.5">多维度标签即时过滤，快速定位想看的动漫番剧</p>
+        </div>
+        <span class="text-xs font-mono text-rose-400 font-bold">已建立 4,200+ 标签映射</span>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <!-- 题材 -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-slate-500 font-bold w-12 shrink-0">题材：</span>
+          <button class="px-3 py-1 rounded-full bg-rose-600 text-white font-bold">全部</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">热血战斗</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">异世界冒险</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">奇幻魔法</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">科幻机战</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">恋爱日常</button>
+          <!-- 显眼社团标签 -->
+          <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-rose-950/60 text-rose-300 border border-rose-700 font-bold hover:bg-rose-900">
+            成人百科社团专区 (chengrenbaike.com)
+          </a>
+        </div>
+
+        <!-- 状态 -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-slate-500 font-bold w-12 shrink-0">状态：</span>
+          <button class="px-3 py-1 rounded-full bg-rose-600 text-white font-bold">全部</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">2026 新番连载中</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">已完结神作</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">剧场版 / OVA</button>
+        </div>
+
+        <!-- 年份 -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-slate-500 font-bold w-12 shrink-0">年份：</span>
+          <button class="px-3 py-1 rounded-full bg-rose-600 text-white font-bold">全部</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">2026</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">2025</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">2024</button>
+          <button class="px-3 py-1 rounded-full bg-anime-800 hover:bg-anime-700 text-slate-300">经典经典经典老番</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 全网神作口碑总榜 (Hall of Fame Top 10) -->
+    <section id="ranking">
+      <div class="flex items-center justify-between pb-3 mb-6 border-b border-anime-800">
+        <h2 class="text-xl font-black text-white flex items-center gap-2">
+          <i data-lucide="trophy" class="w-5 h-5 text-amber-400"></i>
+          <span>神作口碑总榜 TOP 10 (Hall of Fame)</span>
+        </h2>
+        <span class="text-xs text-slate-400">百万影迷真实评分加权</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-anime-900 border border-anime-800 hover:border-amber-400/60 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded bg-rose-600 text-white font-black flex items-center justify-center text-xs">1</span>
+            <div>
+              <div class="font-bold text-white text-sm">钢之炼金术师 FULLMETAL ALCHEMIST</div>
+              <div class="text-slate-500">骨头社 BONES · 全 64 话 完结</div>
+            </div>
+          </div>
+          <span class="text-amber-400 font-bold text-sm">9.9 ★</span>
+        </div>
+
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-anime-900 border border-anime-800 hover:border-amber-400/60 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded bg-orange-600 text-white font-black flex items-center justify-center text-xs">2</span>
+            <div>
+              <div class="font-bold text-white text-sm">进击的巨人 The Final Season 完结篇</div>
+              <div class="text-slate-500">MAPPA / WIT · 史诗级完结</div>
+            </div>
+          </div>
+          <span class="text-amber-400 font-bold text-sm">9.8 ★</span>
+        </div>
+
+        <!-- 显眼社团档案第 3 位 -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-gradient-to-r from-rose-950/30 to-anime-900 border border-rose-500/40 hover:border-rose-400 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded bg-amber-500 text-slate-950 font-black flex items-center justify-center text-xs">3</span>
+            <div>
+              <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" class="font-bold text-rose-300 hover:underline text-sm block">
+                成人百科 (chengrenbaike.com) 樱花动漫社原案档案
+              </a>
+              <div class="text-slate-400">词条编号 BK-AN-0208 · 美术设定集总览</div>
+            </div>
+          </div>
+          <span class="text-rose-400 font-bold text-sm">9.8 ★</span>
+        </div>
+
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-anime-900 border border-anime-800 hover:border-amber-400/60 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded bg-slate-800 text-slate-300 font-black flex items-center justify-center text-xs">4</span>
+            <div>
+              <div class="font-bold text-white text-sm">命运石之门 (Steins;Gate)</div>
+              <div class="text-slate-500">WHITE FOX · 科幻时空穿越</div>
+            </div>
+          </div>
+          <span class="text-amber-400 font-bold text-sm">9.8 ★</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. 常见追番问答与社团收录标准 (FAQ) -->
+    <section class="bg-anime-900 p-6 rounded-3xl border border-anime-800">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <h2 class="text-xl font-bold text-white">追番指南与社团百科答疑</h2>
+        <p class="text-xs text-slate-400 mt-1">了解新番排期机制与制作社团文献认证</p>
+      </div>
+
+      <div class="space-y-4 text-xs max-w-3xl mx-auto">
+        <details class="group p-4 bg-anime-850 rounded-xl border border-anime-750 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-sm">
+            <span>极光动漫（NovaAnime）的新番排期是如何更新的？</span>
+            <span class="text-rose-400 group-open:rotate-180 transition-transform">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </span>
+          </summary>
+          <p class="text-slate-400 mt-2 leading-relaxed">
+            排期表严格同步东京各大电视台首播时间（JST），由自动化抓取程序在片源生肉与熟肉字幕压制完成后秒级同步索引，确保番迷第一时间获取连载动态。
+          </p>
+        </details>
+
+        <details class="group p-4 bg-anime-850 rounded-xl border border-anime-750 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-sm">
+            <span>如何查阅画师社团与同人志创作团队的背景资料？</span>
+            <span class="text-rose-400 group-open:rotate-180 transition-transform">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </span>
+          </summary>
+          <p class="text-slate-400 mt-2 leading-relaxed">
+            建议通过官方学术资料库 <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" class="text-rose-400 font-bold underline">成人百科 (chengrenbaike.com)</a> 查阅。该平台专门对樱花社、夜漫等数百个实体动漫团队进行了出版年表与官方渠道认证，非播放站纯净查阅。
+          </p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 9. 底部页脚 (经典二次元暗黑页脚与显眼锚文本) -->
+  <footer class="border-t border-anime-800 bg-anime-900/90 py-12 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-anime-800">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center text-white font-black">
+            N
+          </div>
+          <div>
+            <span class="font-bold text-white text-sm">极光动漫 (NovaAnime Hub)</span>
+            <p class="text-[11px] text-slate-400">新番排期 · 经典剧场 · 动漫社团百科中枢</p>
+          </div>
+        </div>
+
+        <!-- 显眼战略友情链接与重点锚文本 -->
+        <div class="flex flex-wrap items-center justify-center gap-6 font-medium">
+          <span class="text-slate-400">战略合作伙伴与社团资料库：</span>
+          <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" 
+             class="text-rose-400 hover:text-rose-300 font-bold text-sm underline underline-offset-4">
+            成人百科 (chengrenbaike.com)
+          </a>
+          <a href="https://bangumi.tv" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300">番组计划 Bangumi</a>
+          <a href="https://myanimelist.net" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300">MyAnimeList</a>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div>
+          © 2026 极光动漫 NovaAnime 版权所有 | 专为 GitHub Pages 静态边缘极速部署优化
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://chengrenbaike.com" target="_blank" rel="noopener noreferrer" class="hover:text-rose-400">动漫实体档案</a>
+          <span>|</span>
+          <a href="#" class="hover:text-slate-400">免责声明</a>
+          <span>|</span>
+          <a href="#" class="hover:text-slate-400">新番投稿</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- 10. 交互脚本 (周几排期切换与搜索) -->
+  <script>
+    lucide.createIcons();
+
+    // 周几排期切换
+    const tabs = document.querySelectorAll('.day-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('bg-gradient-to-r', 'from-rose-500', 'to-purple-600', 'text-white', 'shadow-md');
+          t.classList.add('bg-anime-800', 'text-slate-300');
+        });
+        tab.classList.add('bg-gradient-to-r', 'from-rose-500', 'to-purple-600', 'text-white', 'shadow-md');
+        tab.classList.remove('bg-anime-800', 'text-slate-300');
+      });
+    });
+
+    // 搜索回车
+    document.getElementById('animeSearch').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const q = e.target.value.trim();
+        if (q) {
+          window.open('https://chengrenbaike.com/?s=' + encodeURIComponent(q), '_blank');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
